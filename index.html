@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Controle de EPI — Energisa</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app"><p style="padding:24px;font-family:sans-serif;color:#555">Carregando…</p></div>
+<script>
+/* Mostra o erro na tela em vez de deixar a página em branco */
+function erroTela(t){var a=document.getElementById('app');if(a)a.innerHTML='<div style="padding:24px;font-family:sans-serif;color:#b3261e"><b>Não foi possível carregar o sistema.</b><br><br>'+t+'</div>'}
+window.addEventListener('error',function(e){erroTela(String(e.message||'erro desconhecido'))});
+window.addEventListener('unhandledrejection',function(e){erroTela(String((e.reason&&e.reason.message)||e.reason))});
+</script>
+<script type="module" src="app.js" onerror="erroTela('Falha ao carregar o app.js ou o Firebase. Confira se os arquivos app.js e firebase-config.js estão na mesma pasta do index.html no GitHub e se há internet.')"></script>
+</body>
+</html>
