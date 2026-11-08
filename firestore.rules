@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function logado() { return request.auth != null; }
+    function matr() { return request.auth.token.email.split('@')[0]; }
+    function adm() {
+      return logado()
+        && get(/databases/$(database)/documents/usuarios/$(matr())).data.perfil == 'adm'
+        && get(/databases/$(database)/documents/usuarios/$(matr())).data.ativo == 1;
+    }
+
+    match /usuarios/{m} {
+      allow read: if logado() && (adm() || matr() == m);
+      allow create, delete: if adm();
+      // colaborador só pode alterar os próprios tamanhos (campo tm)
+      allow update: if adm() || (logado() && matr() == m
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['tm']));
+    }
+    match /materiais/{id} { allow read: if logado(); allow write: if adm(); }
+    match /funcoes/{id}   { allow read: if logado(); allow write: if adm(); }
+    match /pedidos/{id} {
+      allow read: if logado() && (adm() || resource.data.u == matr());
+      allow create: if logado() && (adm() || request.resource.data.u == matr());
+      allow update: if adm() || (logado() && resource.data.u == matr() && request.resource.data.u == matr());
+      allow delete: if adm();
+    }
+  }
+}
