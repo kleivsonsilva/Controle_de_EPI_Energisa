@@ -14,6 +14,6 @@ function erroTela(t){var a=document.getElementById('app');if(a)a.innerHTML='<div
 window.addEventListener('error',function(e){erroTela(String(e.message||'erro desconhecido'))});
 window.addEventListener('unhandledrejection',function(e){erroTela(String((e.reason&&e.reason.message)||e.reason))});
 </script>
-<script type="module" src="app.js?v=5" onerror="erroTela('Falha ao carregar o app.js ou o Firebase. Confira se os arquivos app.js e firebase-config.js estão na mesma pasta do index.html no GitHub e se há internet.')"></script>
+<script type="module" src="app.js?v=6" onerror="erroTela('Falha ao carregar o app.js ou o Firebase. Confira se os arquivos app.js e firebase-config.js estão na mesma pasta do index.html no GitHub e se há internet.')"></script>
 </body>
 </html>
