@@ -3,8 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#12588c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Controle EPI">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="format-detection" content="telephone=no">
 <title>Controle de EPI — Energisa</title>
-<link rel="stylesheet" href="style.css?v=7">
+<link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 <div id="app"><p style="padding:24px;font-family:sans-serif;color:#555">Carregando…</p></div>
@@ -14,6 +20,6 @@ function erroTela(t){var a=document.getElementById('app');if(a)a.innerHTML='<div
 window.addEventListener('error',function(e){erroTela(String(e.message||'erro desconhecido'))});
 window.addEventListener('unhandledrejection',function(e){erroTela(String((e.reason&&e.reason.message)||e.reason))});
 </script>
-<script type="module" src="app.js?v=12" onerror="erroTela('Falha ao carregar o app.js ou o Firebase. Confira se os arquivos app.js e firebase-config.js estão na mesma pasta do index.html no GitHub e se há internet.')"></script>
+<script type="module" src="app.js?v=14" onerror="erroTela('Falha ao carregar o app.js ou o Firebase. Confira se os arquivos app.js e firebase-config.js estão na mesma pasta do index.html no GitHub e se há internet.')"></script>
 </body>
 </html>
